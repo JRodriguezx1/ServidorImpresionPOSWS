@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="send">Enviar</button>
+
+    <script>
+        const ws = new WebSocket("ws://localhost:3100");
+
+        ws.onopen = () => {
+            console.log("Conectado");
+        };
+
+        ws.onmessage = (event) => {
+            console.log("Mensaje:", event.data);
+        };
+
+        document.getElementById("send").onclick = () => {
+
+            ws.send(JSON.stringify({
+                type: "register_printer",
+                payload: {  
+                    businessId: "21",
+                    sucursal: "Centro",
+                    printerName: "CAJA"
+                }
+            }));
+
+        };
+    </script>
+</body>
+</html>
