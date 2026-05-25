@@ -7,7 +7,7 @@ export class PrintController{
     private sendToPrinter: SendToPrinter;
 
     constructor(sendToPrinter: SendToPrinter){
-        this.sendToPrinter = sendToPrinter;
+        this.sendToPrinter = sendToPrinter;  //uso del caso de uso para enviar a imprimir, inyectado desde el router o contenedor de dependencias
 
     }
 
