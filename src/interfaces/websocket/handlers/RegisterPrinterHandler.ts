@@ -10,7 +10,7 @@ export class RegisterPrinterHandler {
         this.connectionManager = connectionManager;
     }
 
-    //no llamada a a caso de uso, pasa directo a ifrastructure
+    //no llama al caso de uso, pasa directo a ifrastructure
     async handleRegister(message: RegisterPrinterWSMessage, ws: WebSocket) {
         const payload = message.payload;
         this.connectionManager.registerPrinter( payload.businessId, payload.sucursal, payload.printerName, ws);

@@ -4,6 +4,8 @@
   email: string;
 }*/
 
+import { PrintJobStatus } from "./PrintJobStatus.js";
+
 
 export class PrintJob{
 
@@ -13,6 +15,8 @@ export class PrintJob{
   public readonly printerName: string;
   public readonly content: string;
   public readonly createdAt: Date;
+
+  private _status: PrintJobStatus;
 
   constructor(businessId:string, sucursal:string, printerName:string, content:string){
 
@@ -32,7 +36,33 @@ export class PrintJob{
     this.printerName = printerName;
     this.content = content;
     this.createdAt = new Date();
+
+    this._status = PrintJobStatus.PENDING;
   }
 
-  
+  get status(): PrintJobStatus {
+    return this._status;
+  }
+
+
+  markAsSent() {
+    this._status = PrintJobStatus.SENT;
+  }
+
+  markAsReceived() {
+    this._status = PrintJobStatus.RECEIVED;
+  }
+
+  markAsPrinting() {
+    this._status = PrintJobStatus.PRINTING;
+  }
+
+  markAsPrinted() {
+    this._status = PrintJobStatus.PRINTED;
+  }
+
+  markAsFailed() {
+    this._status = PrintJobStatus.FAILED;
+  }
+
 }

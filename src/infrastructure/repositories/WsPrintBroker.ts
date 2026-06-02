@@ -24,6 +24,8 @@ export class WsPrintBroker implements IPrintJobRepository{
             }
         }));
 
+        data.markAsSent();
+
         return data;
     }
 }
