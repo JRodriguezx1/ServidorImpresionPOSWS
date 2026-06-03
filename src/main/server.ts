@@ -93,8 +93,8 @@ export class Server{
 
         //this.app.use(express.static(path.join(__dirname, '../public')));
         //this.app.use(express.static(path.join(process.cwd(), "downloads")));
-        //escuchar el puerto
-        server.listen(this.port, ()=>{  //internamente hace algo como http.createServer(app).listen(3000)
+        //escuchar el puerto dinamico y en la interfaz de red 0.0.0.0 para aceptar conexiones externas (no solo localhost)
+        server.listen(this.port, '0.0.0.0', ()=>{  //internamente hace algo como http.createServer(app).listen(3000)
             console.log(`Server running on port ${this.port}`);
         });
 

@@ -19,7 +19,9 @@ wsRouter.register('print_ack', (data, ws) => printAckHandler.handleAck(data));
 
 
 (async  ()=>{
-    new Server(3100, RouterApp.getRoutes(printController, userController), connectionManager).start(wsRouter);
+    // Railway inyecta automáticamente process.env.PORT
+    const PORT = process.env.PORT ? parseInt(process.env.PORT) : 3100;  //proces.env.PORT viene del archivo .env, si no existe se asigna el puerto 3100 por defecto
+    new Server(PORT, RouterApp.getRoutes(printController, userController), connectionManager).start(wsRouter);
 })();
 
 
