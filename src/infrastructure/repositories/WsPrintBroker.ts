@@ -20,6 +20,8 @@ export class WsPrintBroker implements IPrintJobRepository{
             type: "print",
             payload: {
                 jobId: data.jobId,  //identificador unico para el ACK
+                printerName: data.printerName,
+                tipoTicket: data.tipoTicket,
                 content: data.content
             }
         }));

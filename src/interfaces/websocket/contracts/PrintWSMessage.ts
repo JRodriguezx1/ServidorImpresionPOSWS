@@ -4,6 +4,7 @@ export interface PrintWSMessage {
       businessId: string,
       sucursal: string,
       printerName: string,
+      tipoTicket: string,
       content: string
    };
 }

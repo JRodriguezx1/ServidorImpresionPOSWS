@@ -15,10 +15,11 @@ export class PrintJobHandler {
   async handlePrint(message: PrintWSMessage, ws: WebSocket) {
     
 
-      const printjob = await this.sendToPrinter.execute({
+      const printjob = await this.sendToPrinter.execute({  //aqui se llama al caso de uso para enviar a imprimir, inyectado desde el router o contenedor de dependencias
         businessId: message.payload.businessId,
         sucursal: message.payload.sucursal,
         printerName: message.payload.printerName,
+        tipoTicket: message.payload.tipoTicket,
         content: message.payload.content
       });
 

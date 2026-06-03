@@ -15,8 +15,9 @@ export class PrintController{
 
     PrintToCLI = async(req:Request, res:Response)=>{
         try {
-            const {businessId, sucursal, printerName, content} = req.body;
-            const user = await this.sendToPrinter.execute({businessId, sucursal, printerName, content});
+            const {businessId, sucursal, printerName, tipoTicket, content} = req.body;
+
+            const user = await this.sendToPrinter.execute({businessId, sucursal, printerName, tipoTicket, content});
             res.status(201).json(user);
         } catch (error: any) {
             res.status(400).json({

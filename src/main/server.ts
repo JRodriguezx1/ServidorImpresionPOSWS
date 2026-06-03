@@ -38,7 +38,10 @@ export class Server{
         wss.on("connection", (ws:AliveWebSocket, req) => {
             console.log(req.url, 'Cliente conectado');
             ws.isAlive = true;
-            ws.on("pong", () => { ws.isAlive = true; });
+            ws.on("pong", () => {
+                console.log("Pong recibido de cliente");
+                ws.isAlive = true; 
+            });
 
             ws.on("message", async (msg) => {  //mensaje recibido del cliente
 
@@ -70,13 +73,14 @@ export class Server{
         //  heartbeat
         const interval = setInterval(() => {
             wss.clients.forEach((ws: AliveWebSocket) => {  //en foreach no puede hacer continue ni break por que usa callback internamente, se usa return
-                console.log(ws);
+                //console.log(ws);
                 if (ws.isAlive === false) {
                     console.log("Socket muerto");
                     this.connectionManager.remove(ws);
                     return ws.terminate();  //pasa a la siguiente iteracion
                 }
                 ws.isAlive = false;
+                console.log("Enviando ping a cliente");
                 ws.ping();// enviar ping
             });
         }, 30000);

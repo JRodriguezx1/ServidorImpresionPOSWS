@@ -16,7 +16,7 @@ export const buildUserModule = ()=>{
     const jobStore = new PrintJobStore();
     const sendToPrinter = new SendToPrinter(repoBroker, jobStore);  //caso de uso
     const printController = new PrintController(sendToPrinter, jobStore); //controlador http
-    const userController = new UserController(sendToPrinter); //controlador http
+    const userController = new UserController(); //controlador http
 
     const registerPrinterHandler = new RegisterPrinterHandler(connectionManager); //viene siendo como el controlador
     const printJobHandler  = new PrintJobHandler(sendToPrinter);  //viene siendo como el controlador

@@ -1,9 +1,9 @@
 {
-  "name": "cleanarchitecture",
+  "name": "getaway-printer-server",
   "version": "1.0.0",
   "type": "module",
-  "description": "Clean Architecture con nodejs/ts",
-  "main": "dist/index.js",
+  "description": "Servidor de impresion con Clean Architecture en nodejs/ts",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/app.ts",

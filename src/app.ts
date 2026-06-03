@@ -21,3 +21,8 @@ wsRouter.register('print_ack', (data, ws) => printAckHandler.handleAck(data));
 (async  ()=>{
     new Server(3100, RouterApp.getRoutes(printController, userController), connectionManager).start(wsRouter);
 })();
+
+
+// npm run dev para iniciar el servidor en modo desarrollo, 
+// npm run build para compilar el proyecto a JavaScript en la carpeta dist.
+// npm run start para iniciar en modo produccion (con build previo)
