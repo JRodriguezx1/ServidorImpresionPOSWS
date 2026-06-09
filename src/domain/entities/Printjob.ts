@@ -23,15 +23,10 @@ export class PrintJob{
 
     // Reglas
     if(!businessId.trim())throw new Error("id del negocio inválido");
-  
     if(!sucursal.trim()) throw new Error("Sucursal no valida");
-    
     if(!printerName.trim()) throw new Error("Nombre de la impresora no valida");
-
     if(!tipoTicket.trim()) throw new Error("Tipo de ticket no valido");
-    
     //if(!content.trim()) throw new Error("Contenido de impresion vacio");
-    
   
     this.jobId = crypto.randomUUID();
     this.businessId = businessId;
@@ -43,6 +38,26 @@ export class PrintJob{
 
     this._status = PrintJobStatus.PENDING;
   }
+
+
+  public static reconstruct(storedData: { jobId: string; businessId: string; sucursal: string; printerName: string; tipoTicket: string; content: string; status: PrintJobStatus; createdAt: string | Date; }): PrintJob {
+    // Creamos una instancia "vacía" saltándonos el constructor para no regenerar el UUID
+    const job = Object.create(PrintJob.prototype);
+    // Asignamos las propiedades exactamente como venían de Redis
+    Object.assign(job, {
+      jobId: storedData.jobId,
+      businessId: storedData.businessId,
+      sucursal: storedData.sucursal,
+      printerName: storedData.printerName,
+      tipoTicket: storedData.tipoTicket,
+      content: storedData.content,
+      createdAt: new Date(storedData.createdAt),
+      _status: storedData.status
+    });
+
+    return job;
+  }
+
 
   get status(): PrintJobStatus {
     return this._status;

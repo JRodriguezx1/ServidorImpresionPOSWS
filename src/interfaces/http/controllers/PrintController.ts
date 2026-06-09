@@ -17,8 +17,8 @@ export class PrintController{
         try {
             const {businessId, sucursal, printerName, tipoTicket, content} = req.body;
 
-            const user = await this.sendToPrinter.execute({businessId, sucursal, printerName, tipoTicket, content});
-            res.status(201).json(user);
+            const response = await this.sendToPrinter.execute({businessId, sucursal, printerName, tipoTicket, content});
+            res.status(201).json(response);
         } catch (error: any) {
             res.status(400).json({
                 message: error.message || "Error al enviar trabajo de impresion."
