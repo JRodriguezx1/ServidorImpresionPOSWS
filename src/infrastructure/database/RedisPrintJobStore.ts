@@ -7,6 +7,7 @@ export class RedisPrintJobStore implements IPrintJobStoreRepository{
     private client;
 
     constructor(){
+        //this.client = createClient({ url: process.env.REDIS_URL,  RESP: 2 }); //pruebas local
         this.client = createClient({ url: process.env.REDIS_URL });
         this.client.connect().catch(console.error);
     }

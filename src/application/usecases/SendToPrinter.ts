@@ -25,7 +25,9 @@ export class SendToPrinter {
         */
         const newJob = new PrintJob(job.businessId, job.sucursal, job.printerName, job.tipoTicket, job.content);  //aqui validamos los campos reglas de negocio
         //this.jobStore.add(newJob);  //guarda en memoria con map
+        console.log(newJob);
         await this.jobSoreRedis.add(newJob); //guarda en memoria ram con redis
+        console.log("Guardado");
         return await this.printRepo.sendPrint(newJob); //llamamos a la infrastructure WsPrintBroker para enviar print a socket
     }
 }
